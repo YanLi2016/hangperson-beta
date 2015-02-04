@@ -18,7 +18,7 @@ class HangpersonGame
             @wrong_guesses += c
             return true 
           else 
-            @repeated = true 
+            
             return false
           end 
           #flash[:message] = "Invalid guess."
@@ -27,6 +27,7 @@ class HangpersonGame
             @guesses += c
             return true 
           else 
+            @repeated = true 
             #flash[:message] = "You have already used that letter."
             return false 
           end 
