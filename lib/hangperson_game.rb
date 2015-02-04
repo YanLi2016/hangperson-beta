@@ -9,7 +9,7 @@ class HangpersonGame
   end
 
   def guess(letter)
-    if letter.empty? || !(/^[a-zA-Z]+$/).match(letter) || !letter
+    if letter.nil? || !(/^[a-zA-Z]+$/).match(letter) || letter.empty?
       raise ArgumentError
     else 
       letter.split().each do |c|
