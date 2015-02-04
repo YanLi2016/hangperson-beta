@@ -39,7 +39,15 @@ class HangpersonApp < Sinatra::Base
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
     letter = params[:guess].to_s[0]
-    ### YOUR CODE HERE ###
+    #repeated = params[:repeated]
+    torf = @game.guess(letter)
+    if torf == false
+      if @game.repeated
+        flash[:message] = "You have already used that letter."
+      else 
+        flash[:message] = "Invalid guess."
+      end 
+    end 
     redirect '/show'
   end
   
@@ -49,18 +57,29 @@ class HangpersonApp < Sinatra::Base
   # Notice that the show.erb template expects to use instance variables
   # @wrong_guesses and @word_with_guesses, so set those up here.
   get '/show' do
-    ### YOUR CODE HERE ###
+    @wrong_guesses = @game.wrong_guesses
+    @word_with_guesses = @game.word_with_guesses
+    result = @game.check_win_or_lose
+    if result == :win
+      redirect '/win'
+    
+    elsif result == :lose
+      redirect '/lose'
+    end 
     erb :show # You may change/remove this line
   end
   
   get '/win' do
+    @word = @game.word
     ### YOUR CODE HERE ###
     erb :win # You may change/remove this line
   end
   
   get '/lose' do
+    @word = @game.word
+    erb :lose
     ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+   # You may change/remove this line
   end
   
 end

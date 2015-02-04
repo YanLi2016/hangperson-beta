@@ -1,7 +1,6 @@
 class HangpersonGame
-
-  
-  attr_accessor :word, :guesses, :wrong_guesses
+ 
+  attr_accessor :word, :guesses, :wrong_guesses,:repeated
   def initialize(word)
     @word = word
     @guesses = ""
@@ -9,6 +8,7 @@ class HangpersonGame
   end
 
   def guess(letter)
+    @repeated = false 
     if letter.nil? || !(/^[a-zA-Z]+$/).match(letter) || letter.empty?
       raise ArgumentError
     else 
@@ -18,13 +18,16 @@ class HangpersonGame
             @wrong_guesses += c
             return true 
           else 
+            @repeated = true 
             return false
           end 
+          #flash[:message] = "Invalid guess."
         else
           if !@guesses.include? c
             @guesses += c
             return true 
           else 
+            #flash[:message] = "You have already used that letter."
             return false 
           end 
         end 
