@@ -6,7 +6,6 @@ class HangpersonGame
     @guesses = ""
     @wrong_guesses = ""
   end
-
   def guess(letter)
     @repeated = false 
     if letter.nil? or !(/^[a-zA-Z]+$/).match(letter) or letter.empty?
@@ -35,7 +34,6 @@ class HangpersonGame
       end 
     end 
   end 
-
   def word_with_guesses()
     result = ""
     @word.chars do |c|
@@ -47,7 +45,6 @@ class HangpersonGame
     end
     return result
   end 
-
   def check_win_or_lose
     sofar = word_with_guesses()
     if @wrong_guesses.length >= 7
@@ -58,11 +55,6 @@ class HangpersonGame
       return :play
     end 
   end 
-
-	# , :guesses,  :wrong_guesses
-
-  # add the necessary class methods, attributes, etc. here
-  # to make the tests in spec/hangperson_game_spec.rb pass.
 
   # Get a word from remote "random word" service
 
