@@ -74,6 +74,7 @@ class HangpersonApp < Sinatra::Base
   get '/win' do
     result = @game.check_win_or_lose
     if result == :play
+      flash[:message] = "Gotcha, Cheater"
       redirect '/show'
     else 
       @word = @game.word
@@ -85,6 +86,7 @@ class HangpersonApp < Sinatra::Base
   get '/lose' do
     result = @game.check_win_or_lose
     if result == :play
+      flash[:message] = "Gotcha, Cheater"
       redirect '/show'
     else 
       @word = @game.word

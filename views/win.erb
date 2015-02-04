@@ -1,8 +1,15 @@
-<h1>You Win!</h1>
+<% if flash[:message] %>
+  <p>
+    <span class="error"><%= flash[:message] %></span>
+  </p>
+<% else  %>
 
-<p>
-  The word was
-  <span class="win"><%= @game.word %></span>.
-</p>
+	<h1>You Win!</h1>
 
-<%= erb :new %>
+	<p>
+	  The word was
+	  <span class="win"><%= @game.word %></span>.
+	</p>
+
+	<%= erb :new %>
+<% end %>
