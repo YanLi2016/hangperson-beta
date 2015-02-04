@@ -9,7 +9,7 @@ class HangpersonGame
 
   def guess(letter)
     @repeated = false 
-    if letter.nil? || !(/^[a-zA-Z]+$/).match(letter) || letter.empty?
+    if letter.nil? or !(/^[a-zA-Z]+$/).match(letter) or letter.empty?
       raise ArgumentError
     else 
       letter.split().each do |c|
@@ -18,7 +18,7 @@ class HangpersonGame
             @wrong_guesses += c
             return true 
           else 
-            
+            @repeated = true 
             return false
           end 
           #flash[:message] = "Invalid guess."
