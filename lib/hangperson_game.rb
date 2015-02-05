@@ -8,7 +8,8 @@ class HangpersonGame
   end
   def guess(letter)
     @repeated = false 
-    if letter.nil? or !(/^[a-zA-Z]+$/).match(letter) or letter.empty?
+    if not !! (letter =~ /^[a-zA-Z]+$/)
+      
       raise ArgumentError
     else 
       letter.split().each do |c|
