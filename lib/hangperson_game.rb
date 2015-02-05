@@ -13,8 +13,8 @@ class HangpersonGame
       raise ArgumentError
     else 
       letter.split().each do |c|
-        if !@word.include? c 
-          if !@wrong_guesses.include? c
+        if !@word.downcase.include? c.downcase
+          if !@wrong_guesses.downcase.include? c.downcase
             @wrong_guesses += c
             return true 
           else 
@@ -23,7 +23,7 @@ class HangpersonGame
           end 
           #flash[:message] = "Invalid guess."
         else
-          if !@guesses.include? c
+          if !@guesses.downcase.include? c.downcase
             @guesses += c
             return true 
           else 
@@ -38,7 +38,7 @@ class HangpersonGame
   def word_with_guesses()
     result = ""
     @word.chars do |c|
-      if @guesses.include? c
+      if @guesses.downcase.include? c.downcase
         result = result + c
       else
         result = result + "-"
